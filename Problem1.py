@@ -1,5 +1,6 @@
 import random
 import convert
+
 names_list = [
     "John",
     "Mary",
@@ -37,10 +38,13 @@ names_list = [
     "Paul",
     "Dorothy",
 ]
+
+
 temp_people_data = {}
 people_data = []
 
 
+# This function generates random birthdays for a given number of people
 def generate_birthdays(num_of_people):
     possible_birthdays = 365
     random_birthdays = []
@@ -58,6 +62,7 @@ def generate_birthdays(num_of_people):
     return random_birthdays
 
 
+# This function checks if there are duplicate birthdays in a list
 def has_duplicate(birthdays):
     seen_birthdays = set()
 
@@ -65,20 +70,17 @@ def has_duplicate(birthdays):
         if birthday in seen_birthdays:
             # find the name of the preson with the same birthday
             return True
-        # if birthday in seen_birthdays and birthday < 150:
-        #     return True
         seen_birthdays.add(birthday)
 
     return False
 
 
+# This function calculates the number of duplicate birthdays in a given number of trials
 def num_of_duplicates(trials, num_of_people):
     num_of_duplicates = 0
 
     for _ in range(trials):
         temp_people_data.clear()
-
-        # temp_people_data = {}
         generated_birthdays = generate_birthdays(num_of_people)
 
         if has_duplicate(generated_birthdays):
@@ -87,11 +89,13 @@ def num_of_duplicates(trials, num_of_people):
     return num_of_duplicates
 
 
+# This function calculates the percentage of trials that resulted in duplicate birthdays
 def persentage(trials, people_num=23):
     duplicate_rate = (num_of_duplicates(trials, people_num) / trials) * 100
     return duplicate_rate
 
 
+# This function calculates the average percentage of trials that resulted in duplicate birthdays over 10 runs
 def average(trials, people_num=23):
     total_rate = 0
 
